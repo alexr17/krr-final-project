@@ -1,0 +1,12 @@
+(in-microtheory PeopleForSocialModelingMt)
+
+(isa StudentID Collection)
+(genls StudentID IDString)
+(comment StudentID "Unique identifier for NU sudents”)
+
+;;; (studentIdentifier ?NUStudent ?StudentID)
+(isa studentIdentifier Predicate)
+(arity studentIdentifier 2)
+(arg1Isa studentIdentifier NUstudent)
+(arg2Isa studentIdentifier StudentID)
+(comment studentIdentifier "(studentIdentifier ?student ?id) establishes relationship between a student and its studentID")
