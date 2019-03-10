@@ -1,0 +1,23 @@
+(in-microtheory CourseMtFn)
+
+;;; CourseID collection
+(isa CourseID Collection)
+(genls CourseID IDString)
+(comment CourseID "Represents the course listing and unique indentifier of a NUCourse-CS")
+
+
+;;;(courseIdentifier ?course ?id)
+(isa courseIdentifier Predicate)
+(arity courseIdentifier 2)
+(arg1Isa courseIdentifier NUCourse-CS)
+(arg2Isa courseIdentifier CourseID)
+(comment courseIdentifier "(courseIdentifier ?course ?id) establishes relationship between quarter-specific ?course and unique ?id")
+
+
+;;; (coursePrereq ?course ?prereq)
+(isa coursePrereq Predicate)
+(arity coursePrereq 2)
+(arg1Isa coursePrereq CourseID)
+(arg2Isa coursePrereq CourseID)
+(comment coursePrereq "(coursePrereq ?course ?prereq) indicates that ?prereq is the prerequisite of a given Course-Collegiate ?course.")
+
