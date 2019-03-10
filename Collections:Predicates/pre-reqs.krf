@@ -1,3 +1,4 @@
+(in-microtheory CourseMtFn)
 (coursePrereq EECS211 EECS111)
 (coursePrereq EECS212 EECS111)
 (coursePrereq EECS212 EECS110)
