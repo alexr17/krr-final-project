@@ -7,6 +7,6 @@
 ;;; (studentIdentifier ?NUStudent ?StudentID)
 (isa studentIdentifier Predicate)
 (arity studentIdentifier 2)
-(arg1Isa studentIdentifier NUstudent)
+(arg1Isa studentIdentifier NUStudent)
 (arg2Isa studentIdentifier StudentID)
 (comment studentIdentifier "(studentIdentifier ?student ?id) establishes relationship between a student and its studentID")
