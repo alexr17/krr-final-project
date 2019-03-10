@@ -1,6 +1,4 @@
 (in-microtheory  (CoursesMtFn (WinterQuarterFn (AcademicYearFn NorthwesternUniversity (YearFn 2018)))))
-
-
 (courseIdentifier FundamentalsofComputerProgrammingI-Winter2018 EECS111)
 (courseIdentifier FundamentalsofComputerProgrammingII-Winter2018 EECS211)
 (courseIdentifier WirelessandMobileHealth-Winter2018 EECS397-WirelessandMobileHealth)
@@ -15,7 +13,7 @@
 (courseIdentifier SeminarinStatisticalLanguageModeling-Winter2018 EECS496-StasticalLanguageSeminar)
 (courseIdentifier SemiconductorLasers-Winter2018 EECS409)
 (courseIdentifier SemanticInformationProcessing-Winter2018 EECS337)
-(courseIdentifier RobotDesignStudio-Winter2018 EECS495)
+(courseIdentifier RobotDesignStudio-Winter2018 EECS495-RobotDesignStudio)
 (courseIdentifier RandomProcessesinCommunicationsandControlI-Winter2018 EECS422)
 (courseIdentifier QuadrotorDesignandControl-Winter2018 EECS396-QuadrotorDesign)
 (courseIdentifier ProgrammingMassivelyParallelProcessorswithCUDA-Winter2018 EECS368)
@@ -73,8 +71,3 @@
 (courseIdentifier AdvancedComputerArchitectureI-Winter2018 EECS452)
 (courseIdentifier AdvancedComputerVision-Winter2018 EECS432)
 (courseIdentifier AdvancedDigitalSystemDesignwithFPGAS-Winter2018 EECS395-DesignwithFPGAS)
-
-
-
-
-

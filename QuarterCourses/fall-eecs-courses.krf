@@ -1,4 +1,4 @@
-(in-microtheory (CoursesMtFn (FallQuarterFn (AcademicYearFn NorthwesternUniversity (YearFn 2018)))))
+(in-microtheory (CoursesMtFn (FallQuarterFn (AcademicYearFn NorthwesternUniversity (YearFn 2018)))))
 (courseIdentifier AdvancedDigitalLogicDesign-Fall2018 EECS303)
 (courseIdentifier AdvancedLowPowerDigitalandMixed-signalIntegratedCircuitDesign-Fall2018 EECS395-AdvancedLowPowerDigitalandMixed-signalIntegratedCircuitDesign)
 (courseIdentifier AdvancedTopicsinCompilers-Fall2018 EECS397-AdvancedTopicsinCompilers)

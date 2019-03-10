@@ -20,4 +20,3 @@
 (arg1Isa coursePrereq CourseID)
 (arg2Isa coursePrereq CourseID)
 (comment coursePrereq "(coursePrereq ?course ?prereq) indicates that ?prereq is the prerequisite of a given Course-Collegiate ?course.")
-

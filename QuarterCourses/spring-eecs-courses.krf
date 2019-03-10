@@ -1,4 +1,4 @@
-(in-microtheory (CoursesMtFn (SpringQuarterFn (AcademicYearFn NorthwesternUniversity (YearFn 2018)))))
+(in-microtheory (CoursesMtFn (SpringQuarterFn (AcademicYearFn NorthwesternUniversity (YearFn 2018)))))
 (courseIdentifier AdvancedDigitalLogicDesign-Spring2018 EECS303)
 (courseIdentifier AdvancedDigitalSignalProcessing-Spring2018 EECS418)
 (courseIdentifier AdvancedMultimodalInterfacesandAnalyticsResearch-Spring2018 EECS397-AdvancedMultimodalInterfacesandAnalyticsResearch)
