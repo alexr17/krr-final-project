@@ -2,7 +2,7 @@
 
 (isa StudentID Collection)
 (genls StudentID IDString)
-(comment StudentID "Unique identifier for NU sudents”)
+(comment StudentID "Unique identifier for NU sudents")
 
 ;;; (studentIdentifier ?NUStudent ?StudentID)
 (isa studentIdentifier Predicate)
