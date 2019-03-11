@@ -1,0 +1,36 @@
+
+;;; (isa CourseRecommenderMt Microtheory)
+;;; (genlmt CourseRecommenderMt CourseMtFn)
+;;; (genlmt CourseRecommenderMt PeopleForSocialModelingMt)
+
+(in-microtheory CourseRecommenderMt)
+(genlmt CourseRecommenderMt CourseMtFn)
+(genlmt CourseRecommenderMt PeopleForSocialModelingMt)
+
+;;; (courseTaken ?StudentID ?NUCourse-CS)
+(isa courseTaken Predicate)
+(arity courseTaken 2)
+(arg1Isa courseTaken StudentID)
+(arg2Isa courseTaken NUCourse-CS)
+(comment courseTaken "Predicate to represent that a student has taken a specific course")
+
+
+
+(studentIdentifier AlexanderRhee anr4385)
+(courseTaken anr4385 EECS111)
+(courseTaken anr4385 EECS211)
+(courseTaken anr4385 EECS214)
+(courseTaken anr4385 EECS213)
+(courseTaken anr4385 EECS212)
+(courseTaken anr4385 EECS348)
+(courseTaken anr4385 EECS337)
+(courseTaken anr4385 EECS371)
+
+
+
+
+
+
+
+
+
