@@ -34,7 +34,10 @@
     (courseTerm ?Course
         (SpringQuarterFn
             (AcademicYearFn NorthwesternUniversity (YearFn 2018))))
-    (coursePrereq ?CourseID ?PreReq) 
+    (coursePrereq ?CourseID ?PreReq)
     (courseTaken ?StudentID ?PreReq)
-    (not (courseTaken ?StudentID ?CourseID))
+    (courseTaken ?StudentID ?CourseID2)
+    (different ?CourseID ?CourseID2)
+
+    )
 )
