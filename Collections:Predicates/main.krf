@@ -29,15 +29,13 @@
 (courseTaken anr3485 EECS337)
 (courseTaken anr3485 EECS371)
 
-(<== (canTakeCourse ?StudentID ?CourseID)
-    (courseIdentifier ?Course ?CourseID)
-    (courseTerm ?Course
-        (SpringQuarterFn
-            (AcademicYearFn NorthwesternUniversity (YearFn 2018))))
-    (coursePrereq ?CourseID ?PreReq)
-    (courseTaken ?StudentID ?PreReq)
-    (courseTaken ?StudentID ?CourseID2)
-    (different ?CourseID ?CourseID2)
 
-    )
+;; Works without duplicates!
+(<== (canTakeCourse ?StudentID ?CourseID)
+     (courseIdentifier ?Course ?CourseID)
+     (uninferredSentence (courseTaken ?StudentID ?CourseID))
+     (courseTerm ?Course
+       (SpringQuarterFn
+         (AcademicYearFn NorthwesternUniversity (YearFn 2018))))
+     (coursePrereq ?CourseID ?PreReq) (courseTaken ?StudentID ?PreReq))
 )
