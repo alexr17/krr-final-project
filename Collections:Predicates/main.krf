@@ -1,8 +1,3 @@
-
-;;; (isa CourseRecommenderMt Microtheory)
-;;; (genlmt CourseRecommenderMt CourseMtFn)
-;;; (genlmt CourseRecommenderMt PeopleForSocialModelingMt)
-
 (in-microtheory CourseRecommenderMt)
 (genlmt CourseRecommenderMt CourseMtFn)
 (genlmt CourseRecommenderMt PeopleForSocialModelingMt)
@@ -14,23 +9,32 @@
 (arg2Isa courseTaken NUCourse-CS)
 (comment courseTaken "Predicate to represent that a student has taken a specific course")
 
+;;; (canTakeCourse ?StudentID ?NUCourse-CS)
+(isa canTakeCourse Predicate)
+(arity canTakeCourse 2)
+(arg1Isa canTakeCourse StudentID)
+(arg2Isa canTakeCourse NUCourse-CS)
+(comment canTakeCourse "Shows that a student represented via StudentID can take a specific CS Course")
 
+(isa anr3485 StudentID)
+(isa AlexanderRhee NUStudent)
 
-(studentIdentifier AlexanderRhee anr4385)
-(courseTaken anr4385 EECS111)
-(courseTaken anr4385 EECS211)
-(courseTaken anr4385 EECS214)
-(courseTaken anr4385 EECS213)
-(courseTaken anr4385 EECS212)
-(courseTaken anr4385 EECS348)
-(courseTaken anr4385 EECS337)
-(courseTaken anr4385 EECS371)
+(studentIdentifier AlexanderRhee anr3485)
+(courseTaken anr3485 EECS111)
+(courseTaken anr3485 EECS211)
+(courseTaken anr3485 EECS214)
+(courseTaken anr3485 EECS213)
+(courseTaken anr3485 EECS212)
+(courseTaken anr3485 EECS348)
+(courseTaken anr3485 EECS337)
+(courseTaken anr3485 EECS371)
 
-
-
-
-
-
-
-
-
+(<== (canTakeCourse ?StudentID ?CourseID)
+    (courseIdentifier ?Course ?CourseID)
+    (courseTerm ?Course
+        (SpringQuarterFn
+            (AcademicYearFn NorthwesternUniversity (YearFn 2018))))
+    (coursePrereq ?CourseID ?PreReq) 
+    (courseTaken ?StudentID ?PreReq)
+    (not (courseTaken ?StudentID ?CourseID))
+)
