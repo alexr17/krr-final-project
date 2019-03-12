@@ -2,7 +2,6 @@
 (genlmt CourseRecommenderMt CourseMtFn)
 (genlmt CourseRecommenderMt PeopleForSocialModelingMt)
 
-
 ;;; (courseTaken ?StudentID ?CourseID)
 (isa courseTaken Predicate)
 (isa courseTaken CycLSentence-Assertible)
@@ -17,20 +16,6 @@
 (arg1Isa canTakeCourse StudentID)
 (arg2Isa canTakeCourse CourseID)
 (comment canTakeCourse "Shows that a student represented via StudentID can take a specific CS Course")
-
-(isa anr3485 StudentID)
-(isa AlexanderRhee NUStudent)
-
-(studentIdentifier AlexanderRhee anr3485)
-(courseTaken anr3485 EECS111)
-(courseTaken anr3485 EECS211)
-(courseTaken anr3485 EECS214)
-(courseTaken anr3485 EECS213)
-(courseTaken anr3485 EECS212)
-(courseTaken anr3485 EECS348)
-(courseTaken anr3485 EECS337)
-(courseTaken anr3485 EECS371)
-
 
 ;; Works without duplicates!
 (<== (canTakeCourse ?StudentID ?CourseID)

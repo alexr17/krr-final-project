@@ -1,0 +1,31 @@
+(in-microtheory CourseRecommenderMt)
+(genlmt CourseRecommenderMt CourseMtFn)
+(genlmt CourseRecommenderMt PeopleForSocialModelingMt)
+
+(isa anr3485 StudentID)
+(isa AlexanderRhee NUStudent)
+
+(studentIdentifier AlexanderRhee anr3485)
+(courseTaken anr3485 EECS111)
+(courseTaken anr3485 EECS211)
+(courseTaken anr3485 EECS214)
+(courseTaken anr3485 EECS213)
+(courseTaken anr3485 EECS212)
+(courseTaken anr3485 EECS348)
+(courseTaken anr3485 EECS337)
+(courseTaken anr3485 EECS371)
+
+
+(isa abc1234 StudentID)
+(isa EECSPleb NUStudent)
+
+(studentIdentifier EECSPleb abc1234)
+(courseTaken abc1234 EECS110)
+
+
+(isa xyz6666 StudentID)
+(isa Freshman NUStudent)
+
+(studentIdentifier Freshman xyz6666)
+(courseTaken xyz6666 EECS111)
+(courseTaken xyz6666 EECS211)
