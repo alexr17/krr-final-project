@@ -1,0 +1,76 @@
+(isa ENTER_NETID StudentID)
+(isa ENTER_STUDENT_NAME NUStudent)
+(studentIdentifier ENTER_STUDENT_NAME ENTER_NETID)
+(courseTaken ENTER_NETID EECSXXX)
+(courseTaken ENTER_NETID EECSXXX)
+(courseTaken ENTER_NETID EECSXXX)
+
+;;; Add additional (courseTaken ENTER_NETID EECSXXX) triples as needed to include all CS classes you have taken
+
+;;; For courses with dashes in their course ID's match the following representation: EECS351-1
+
+
+
+;;; EECS395-AdvancedLowPowerDigitalandMixed-signalIntegratedCircuitDesign
+;;; EECS395-AdvancedTopicsinComputerArchitecture
+;;; EECS395-BioelectricSystemsModelingAndAnalysis
+;;; EECS395-Biometrics
+;;; EECS395-BlockchainandCryptocurrency
+;;; EECS395-DesignwithFPGAS
+;;; EECS395-GeospatialVisionandVisualization
+;;; EECS395-IntroductiontoSmartGridSystems
+;;; EECS395-IoTSensors
+;;; EECS395-MetamaterialsandNanophotonicDevices
+;;; EECS395-OptimizationTechniquesforMachineLearningandDeepLearning
+;;; EECS395-PersonalHealthSystems
+;;; EECS395-PlatformsandNetworkedMarkets
+;;; EECS395-ProbabilisticSystems
+;;; EECS395-QuantumComputation
+;;; EECS395-SmartCities
+;;; EECS395-SynthesisOfCyber
+;;; EECS396-AffectiveComputingSeminar
+;;; EECS396-CompanionCognitiveSystemStudio
+;;; EECS396-ConversationalInterfaces
+;;; EECS396-DataScienceSeminar
+;;; EECS396-ModalAnalytics
+;;; EECS396-OperationalSemantics
+;;; EECS396-ProgrammingLanguagesSeminar
+;;; EECS396-QuadrotorDesign
+;;; EECS396-RandomizedAlgorithms
+;;; EECS396-SpecialTopicsinGameAI
+;;; EECS396-SpecialTopicsinSwarmsandMulti-robotSystems
+;;; EECS396-SystemsProgramminginRust
+;;; EECS396-TypeSystems
+;;; EECS397-AdvancedMultimodalInterfacesandAnalyticsResearch
+;;; EECS397-AdvancedTopicsinCompilers
+;;; EECS397-AlgorithmsandSociety
+;;; EECS397-ComputationalPhotographySeminar
+;;; EECS397-ComputingandSocioeconomicMobility
+;;; EECS397-DigitalForensics
+;;; EECS397-DigitalLuthier
+;;; EECS397-GameDevelopmentStudio
+;;; EECS397-InclusiveMaking
+;;; EECS397-InnovationinJournalismAndTechnology
+;;; EECS397-InnovationinJournalismAndTechnology
+;;; EECS397-InnovationInJournalismAndTechnoloy
+;;; EECS397-InnovationLab
+;;; EECS397-InnovationLab
+;;; EECS397-SocialComputing
+;;; EECS397-SocialComputingandCrowdSourcing
+;;; EECS397-SoftwareConstruction
+;;; EECS397-WirelessandMobileHealth
+;;; EECS398-ElectricalEngineeringDesign
+;;; EECS495-IntroductiontoDatabaseSystems
+;;; EECS495-IntroductiontoNanophotonicsandPlasmonicsScienceandTechnology
+;;; EECS495-IntroductiontoNonlinearControlTheory
+;;; EECS495-NUventionImpact
+;;; EECS495-RobotDesignStudio
+;;; EECS495-RobotDesignStudio
+;;; EECS495-StatisticalOptics
+;;; EECS496-ComputationalAuditorySceneAnalysis
+;;; EECS496-DesignOfTools
+;;; EECS496-DistributedSystems
+;;; EECS496-GraduateAlgorithms
+;;; EECS496-MechanismDesign
+;;; EECS496-StasticalLanguageSeminar
+;;; EECS496-TheoreticalMachineLearning
