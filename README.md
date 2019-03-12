@@ -1,7 +1,20 @@
-# KRR Academic Advisor
-# David, Itay, and Alex
+## KRR Academic Advisor
+## David, Itay, and Alex
 
-**Steps**:
+
+# Our motivation
+We wanted to create a KRR-powered course advising system for CS students. This can enable users to get a personalized list of courses available for the following quarter. Northwestern currently does not have a process for this, it's current methods are confusing and not personable to each user, all the while scheduling advising appointments with a human advisor may be a hassle.
+
+
+# How it works
+**Knowledge Representation**: We used the openCyc database through Companions to leverage existing data about Northwestern courses. This data is elaborated upon with some of our bespoke concepts such as:
+* Universal course identifiers to abstract from the quarter-specific information that already exists in the knowledgebase
+* Create intricate relationships amongst the courses, as follows:
+  * The degree requirements each of the courses fulfil in regards to the Computer Science major.
+  * The prerequisites required by each of the courses in order to actually enroll in them.
+
+
+# How to use
 1. Start Companions on your computer. See EECS 371 Assignment 4 PDF for instructions on how to do this.
 2. Enter a username and start a Companions session.
 3. Right click on "interaction manager" and load list of specific flat files shown below.
