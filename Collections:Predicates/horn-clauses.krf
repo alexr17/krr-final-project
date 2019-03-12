@@ -1,0 +1,9 @@
+(isa EECS212andEECS213 CourseID)
+(isa EECS213andEECS214 CourseID)
+(isa EECS212andEECS214 CourseID)
+(isa EECS212andEECS213andEECS214 CourseID)
+
+(<== (courseTaken ?studentID EECS212andEECS213)
+    (courseTaken ?studentID EECS212)
+    (courseTaken ?studentID EECS213)
+)

@@ -2,18 +2,20 @@
 (genlmt CourseRecommenderMt CourseMtFn)
 (genlmt CourseRecommenderMt PeopleForSocialModelingMt)
 
-;;; (courseTaken ?StudentID ?NUCourse-CS)
+
+;;; (courseTaken ?StudentID ?CourseID)
 (isa courseTaken Predicate)
+(isa courseTaken CycLSentence-Assertible)
 (arity courseTaken 2)
 (arg1Isa courseTaken StudentID)
-(arg2Isa courseTaken NUCourse-CS)
+(arg2Isa courseTaken CourseID)
 (comment courseTaken "Predicate to represent that a student has taken a specific course")
 
-;;; (canTakeCourse ?StudentID ?NUCourse-CS)
+;;; (canTakeCourse ?StudentID ?CourseID)
 (isa canTakeCourse Predicate)
 (arity canTakeCourse 2)
 (arg1Isa canTakeCourse StudentID)
-(arg2Isa canTakeCourse NUCourse-CS)
+(arg2Isa canTakeCourse CourseID)
 (comment canTakeCourse "Shows that a student represented via StudentID can take a specific CS Course")
 
 (isa anr3485 StudentID)
