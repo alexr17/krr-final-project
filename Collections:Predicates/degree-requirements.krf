@@ -1,7 +1,7 @@
 (in-microtheory CourseMtFn)
 
 ;;; Degree Requirement Collection
-(is DegreeRequirement Collection)
+(isa DegreeRequirement Collection)
 (genls DegreeRequirement FOOBAR)
 (comment DegreeRequirement “CS Major degree requirement”)
 
@@ -13,6 +13,13 @@
 (isa Interfaces DegreeRequirement)
 (isa TechnicalElective DegreeRequirement)
 (isa Project DegreeRequirement)
+
+;;; (satisfiedRequirement ?StudentID ?DegreeRequirement)
+(isa satisfiedRequirement Predicate)
+(arity satisfiedRequirement 2)
+(arg1Isa satisfiedRequirement StudentID)
+(arg2Isa satisfiedRequirement DegreeRequirement)
+(comment satisfiedRequirement "Tells whether a student has satisfied a specific degree requirement")
 
 ;;; (countsTowards ?course ?requirement)
 (isa countsTowards Predicate)

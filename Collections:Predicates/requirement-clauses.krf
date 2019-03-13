@@ -1,0 +1,96 @@
+(<== (satisfiedRequirement ?studentID Core)
+    (evaluate ?num
+        (LengthOfListFn
+            (SetToListFn
+                (TheClosedRetrievalSetOf ?course
+                    (and 
+                        (courseTaken ?studentID ?course)
+                        (countsTowards ?course Core)
+                    )
+                )
+            )
+        )
+    )
+    (greaterThanOrEqualTo ?num 6)
+)
+
+(<== (satisfiedRequirement ?studentID AI)
+    (courseTaken ?studentID ?course)
+    (countsTowards ?course AI)
+)
+
+(<== (satisfiedRequirement ?studentID Systems)
+    (courseTaken ?studentID ?course)
+    (countsTowards ?course Systems)
+)
+
+(<== (satisfiedRequirement ?studentID Theory)
+    (courseTaken ?studentID ?course)
+    (countsTowards ?course Theory)
+)
+
+(<== (satisfiedRequirement ?studentID SoftwareDevelopment)
+    (courseTaken ?studentID ?course)
+    (countsTowards ?course SoftwareDevelopment)
+)
+
+(<== (satisfiedRequirement ?studentID Interfaces)
+    (courseTaken ?studentID ?course)
+    (countsTowards ?course Interfaces)
+)
+
+(<== (satisfiedRequirement ?studentID Project)
+    (evaluate ?num
+        (LengthOfListFn
+            (SetToListFn
+                (TheClosedRetrievalSetOf ?course
+                    (and 
+                        (courseTaken ?studentID ?course)
+                        (countsTowards ?course Project)
+                    )
+                )
+            )
+        )
+    )
+    (greaterThanOrEqualTo ?num 2)
+)
+
+(<== (satisfiedRequirement ?studentID TechnicalElective)
+    (evaluate ?num
+        (LengthOfListFn
+            (SetToListFn
+                (TheClosedRetrievalSetOf ?course
+                    (and 
+                        (courseTaken ?studentID ?course)
+                        (countsTowards ?course TechnicalElective)
+                    )
+                )
+            )
+        )
+    )
+    (greaterThanOrEqualTo ?num 6)
+)
+
+;;; Need the definition for this predicate
+(<== (canGraduate ?studentID)
+    (satisfiedRequirement ?studentID Core)
+    (satisfiedRequirement ?studentID AI)
+    (satisfiedRequirement ?studentID Systems)
+    (satisfiedRequirement ?studentID Theory)
+    (satisfiedRequirement ?studentID SoftwareDevelopment)
+    (satisfiedRequirement ?studentID Project)
+    (satisfiedRequirement ?studentID TechnicalElective)
+    (evaluate ?num
+        (LengthOfListFn
+            (SetToListFn
+                (TheClosedRetrievalSetOf ?course
+                    (and 
+                        (courseTaken ?studentID ?course)
+                        (countsTowards ?course ?AnyRandomRequirement)
+                    )
+                )
+            )
+        )
+    )
+    (greaterThanOrEqualTo ?num 19)
+)

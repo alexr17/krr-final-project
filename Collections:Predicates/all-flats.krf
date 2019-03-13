@@ -488,7 +488,7 @@
 )
 
 (<== (courseTaken ?studentID EECS212andEECS213andEECS214)
-    (courseTaken ?studentID EEcs212)
+    (courseTaken ?studentID EECS212)
     (courseTaken ?studentID EECS213)
     (courseTaken ?studentID EECS214)
 )
