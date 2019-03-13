@@ -1,33 +1,76 @@
 (in-microtheory CourseRecommenderMt)
-
-
-
-
 ;;; Query to create a sample schedule
 ;;; 4 classes that do not coincide with time
 
 
-;; (sampleCourseSchedule ?studentID ?course1 ?course2 ?course3 ?course4)
-(isa sampleCourseSchedule Relation)
-(arity sampleCourseSchedule 5)
+;; (sampleCourseSchedule ?studentID ?courseList)
+(isa sampleCourseSchedule Predicate)
+(arity sampleCourseSchedule 2)
 (arg1Isa sampleCourseSchedule StudentID)
-(arg2Isa sampleCourseSchedule CourseID)
-(arg3Isa sampleCourseSchedule CourseID)
-(arg4Isa sampleCourseSchedule CourseID)
-(arg5Isa sampleCourseSchedule CourseID)
+(arg2Isa sampleCourseSchedule TheList)
 (comment sampleCourseSchedule "returns 4 EECS courses that a student can take next quarter")
 
 
-(<== (sampleCourseSchedule ?studentID ?course1 ?course2 ?course3 ?course4)
-;(isa ?course1 CourseID)
-;(isa ?course2 CourseID)
-;(isa ?course3 CourseID)
-;(isa ?course4 CourseID)
+(<== (sampleCourseSchedule ?studentID ?courseList)
+  (evaluate ?courseList
+    (SublistFromToFn
+      (SetToListFn
+        (TheClosedRetrievalSetOf ?course (canTakeCourse ?studentID ?course)
+      )
+    )
+    0 4)
+  )
+  (evaluate ?course1 (FirstInListFn ?courseList))
+  (evaluate ?course2 (FirstInListFn ?courseList))
+  (evaluate ?course3 (FirstInListFn ?courseList))
+  (evaluate ?course4 (FirstInListFn ?courseList))
 
-(canTakeCourse ?studentID ?course1)
-(canTakeCourse ?studentID ?course2)
-(canTakeCourse ?studentID ?course3)
-(canTakeCourse ?studentID ?course4)
+  (courseIdentifier ?course1-full ?course1)
+  (courseIdentifier ?course2-full ?course2)
+  (courseIdentifier ?course3-full ?course3)
+  (courseIdentifier ?course4-full ?course4)
+
+  (courseTerm ?course1-full
+    (SpringQuarterFn
+      (AcademicYearFn NorthwesternUniversity (YearFn 2018))))
+  (courseTerm ?course2-full
+    (SpringQuarterFn
+      (AcademicYearFn NorthwesternUniversity (YearFn 2018))))
+  (courseTerm ?course3-full
+    (SpringQuarterFn
+      (AcademicYearFn NorthwesternUniversity (YearFn 2018))))
+  (courseTerm ?course4-full
+    (SpringQuarterFn
+      (AcademicYearFn NorthwesternUniversity (YearFn 2018))))
+
+  (courseTimeString ?course1-full ?time1)
+  (courseTimeString ?course2-full ?time2)
+  (courseTimeString ?course3-full ?time3)
+  (courseTimeString ?course4-full ?time4)
+
+  (differentSymbols ?time1 ?time2)
+  (differentSymbols ?time1 ?time3)
+  (differentSymbols ?time1 ?time4)
+  (differentSymbols ?time2 ?time3)
+  (differentSymbols ?time2 ?time4)
+  (differentSymbols ?time3 ?time4)
+
+  (different ?course1 ?course2)
+  (different ?course1 ?course3)
+  (different ?course1 ?course4)
+  (different ?course2 ?course3)
+  (different ?course2 ?course4)
+  (different ?course3 ?course4)
+
+)
+
+
+
+
+;(canTakeCourse ?studentID ?course1)
+;(canTakeCourse ?studentID ?course2)
+;(canTakeCourse ?studentID ?course3)
+;(canTakeCourse ?studentID ?course4)
 
 ;(courseIdentifier ?course1-full ?course1)
 ;(courseIdentifier ?course2-full ?course2)
@@ -65,4 +108,3 @@
 ;(different ?course2 ?course3)
 ;(different ?course2 ?course4)
 ;(different ?course3 ?course4)
-)
