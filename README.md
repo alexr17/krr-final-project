@@ -8,6 +8,15 @@ We wanted to create a KRR-powered course advising system for CS students. This c
 
 # How it works
 **Knowledge Representation**: We used the openCyc database through Companions to leverage existing data about Northwestern courses. This data is elaborated upon with some of our bespoke concepts such as:
+* Main knowledge components:
+	* StudentID -- Collection
+	* studentIdentifier -- Predicate
+	* courseTaken -- Predicate
+	* CourseID -- Collection
+	* courseIdentifier -- Predicate
+	* coursePrereq -- Predicate
+	* DegreeRequirement -- Collection
+	* satisfiedRequirement -- Predicate
 * Universal course identifiers to abstract from the quarter-specific information that already exists in the knowledgebase
 * Create intricate relationships amongst the courses, as follows:
   * The degree requirements each of the courses fulfil in regards to the Computer Science major.
@@ -37,6 +46,8 @@ We wanted to create a KRR-powered course advising system for CS students. This c
 		* Description: Similar functionality to above query but lets user filter out by course topic
 	* (missingRequirements ENTER_NETID)
 		* Description: Lists the degree requirements the student needs to fulfill
+	* (satisfiedRequirement ENTER_NETID ?requirement)
+		* Description: Returns all degree requirements satisfied by student
 	* (sampleCourseSchedule ENTER_NETID ?courseList)
 		* Description: Generates a sample course schedule for next quarter considering course timestring
 10. Press the button titled 'Query using fire:query'
