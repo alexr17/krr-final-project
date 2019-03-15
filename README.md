@@ -50,8 +50,8 @@ We wanted to create a KRR-powered course advising system for CS students. This c
 	* (canTakeCourseByTopic ENTER_NETID ?CourseID ?Topic)
 		* Description: Similar functionality to above query but lets user filter out by course topic
 		* Topics include AI, Systems, Theory, Interfaces, SoftwareDevelopment, Project, TechnicalElective
-	* (missingRequirements ENTER_NETID)
-		* Description: Lists the degree requirements the student needs to fulfill
+	* (missingRequirements ENTER_NETID ?requirement)
+		* Description: Lists the degree requirements the student still needs to fulfill
 	* (satisfiedRequirement ENTER_NETID ?requirement)
 		* Description: Returns all degree requirements satisfied by student
 	* (sampleCourseSchedule ENTER_NETID ?courseList)
