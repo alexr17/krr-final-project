@@ -2,7 +2,7 @@
 
 ;;; Degree Requirement Collection
 (isa DegreeRequirement Collection)
-(genls DegreeRequirement FOOBAR)
+(genls DegreeRequirement Requirement)
 (comment DegreeRequirement “CS Major degree requirement”)
 
 (isa Core DegreeRequirement)
