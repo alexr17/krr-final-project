@@ -30,9 +30,9 @@ We wanted to create a KRR-powered course advising system for CS students. This c
 2. Enter a username and start a Companions session.
 3. Right click on "interaction manager" and load list of specific flat files shown below.
 4. Under the Collections:Predicate folder, load the "all-flats.krf" file into Companions.
-<br />
+
 **NOTE** You can use the student ID anr3485 for queries, as information about that student has already been put in the KB.
-<br />
+
 5. Open 'main.krf' in a text editor. This will act as a template
   1. Replace ENTER_NETID with your unique net id
   2. Replace ENTER_STUDENT_NAME with your full name
