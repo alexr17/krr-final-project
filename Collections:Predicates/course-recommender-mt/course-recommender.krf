@@ -2,15 +2,6 @@
 (genlmt CourseRecommenderMt CourseMtFn)
 (genlmt CourseRecommenderMt PeopleForSocialModelingMt)
 
-;;; (courseTaken ?StudentID ?CourseID)
-(isa courseTaken Predicate)
-(isa courseTaken CycLSentence-Assertible)
-(arity courseTaken 2)
-(arg1Isa courseTaken StudentID)
-(arg2Isa courseTaken CourseID)
-(comment courseTaken "Predicate to represent that a student has taken a specific course")
-
-
 ;; Based on prereqs, shows what courses a user can take
 
 ;;; (canTakeCourse ?StudentID ?CourseID)
@@ -91,7 +82,6 @@
   (evaluate ?course3 (RandomMemberFn ?courseList1))
   (evaluate ?course4 (RandomMemberFn ?courseList1))
 
-
   (different ?course1 ?course2)
   (different ?course1 ?course3)
   (different ?course1 ?course4)
@@ -130,8 +120,4 @@
   (uninferredSentence (equals ?time3 ?time4))
 
   (evaluate ?courseList (ListFn ?course1 ?course2 ?course3 ?course4))
-
-
 )
-
-

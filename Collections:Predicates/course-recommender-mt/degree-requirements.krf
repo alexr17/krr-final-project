@@ -1,9 +1,10 @@
-(in-microtheory CourseMtFn)
+(in-microtheory CourseRecommenderMt)
 
 ;;; Degree Requirement Collection
 (isa DegreeRequirement Collection)
 (genls DegreeRequirement Requirement)
 (comment DegreeRequirement “CS Major degree requirement”)
+
 
 (isa Core DegreeRequirement)
 (isa AI DegreeRequirement)
@@ -14,12 +15,6 @@
 (isa TechnicalElective DegreeRequirement)
 (isa Project DegreeRequirement)
 
-;;; (satisfiedRequirement ?StudentID ?DegreeRequirement)
-(isa satisfiedRequirement Predicate)
-(arity satisfiedRequirement 2)
-(arg1Isa satisfiedRequirement StudentID)
-(arg2Isa satisfiedRequirement DegreeRequirement)
-(comment satisfiedRequirement "Tells whether a student has satisfied a specific degree requirement")
 
 ;;; (countsTowards ?course ?requirement)
 (isa countsTowards Predicate)
@@ -207,3 +202,115 @@
 (countsTowards EECS397-SocialComputingandCrowdSourcing Project)
 (countsTowards EECS397-SoftwareConstruction Project)
 (countsTowards EECS397-WirelessandMobileHealth Project)
+
+
+;;; (satisfiedRequirement ?StudentID ?DegreeRequirement)
+(isa satisfiedRequirement Predicate)
+(arity satisfiedRequirement 2)
+(arg1Isa satisfiedRequirement StudentID)
+(arg2Isa satisfiedRequirement DegreeRequirement)
+(comment satisfiedRequirement "Tells whether a student has satisfied a specific degree requirement")
+
+
+(<== (satisfiedRequirement ?studentID Core)
+    (evaluate ?num
+        (LengthOfListFn
+            (SetToListFn
+                (TheClosedRetrievalSetOf ?course
+                    (and
+                        (courseTaken ?studentID ?course)
+                        (countsTowards ?course Core)
+                    )
+                )
+            )
+        )
+    )
+    (greaterThanOrEqualTo ?num 6)
+)
+
+(<== (satisfiedRequirement ?studentID AI)
+    (courseTaken ?studentID ?course)
+    (countsTowards ?course AI)
+)
+
+(<== (satisfiedRequirement ?studentID Systems)
+    (courseTaken ?studentID ?course)
+    (countsTowards ?course Systems)
+)
+
+(<== (satisfiedRequirement ?studentID Theory)
+    (courseTaken ?studentID ?course)
+    (countsTowards ?course Theory)
+)
+
+(<== (satisfiedRequirement ?studentID SoftwareDevelopment)
+    (courseTaken ?studentID ?course)
+    (countsTowards ?course SoftwareDevelopment)
+)
+
+(<== (satisfiedRequirement ?studentID Interfaces)
+    (courseTaken ?studentID ?course)
+    (countsTowards ?course Interfaces)
+)
+
+(<== (satisfiedRequirement ?studentID Project)
+    (evaluate ?num
+        (LengthOfListFn
+            (SetToListFn
+                (TheClosedRetrievalSetOf ?course
+                    (and
+                        (courseTaken ?studentID ?course)
+                        (countsTowards ?course Project)
+                    )
+                )
+            )
+        )
+    )
+    (greaterThanOrEqualTo ?num 2)
+)
+
+(<== (satisfiedRequirement ?studentID TechnicalElective)
+    (evaluate ?num
+        (LengthOfListFn
+            (SetToListFn
+                (TheClosedRetrievalSetOf ?course
+                    (and
+                        (courseTaken ?studentID ?course)
+                        (countsTowards ?course TechnicalElective)
+                    )
+                )
+            )
+        )
+    )
+    (greaterThanOrEqualTo ?num 6)
+)
+
+
+;;; (canGraduate ?StudentID)
+(isa canGraduate Predicate)
+(arity canGraduate 1)
+(arg1Isa canGraduate StudentID)
+(comment canGraduate "Tells whether a student can graduate with a CS major")
+
+(<== (canGraduate ?studentID)
+    (satisfiedRequirement ?studentID Core)
+    (satisfiedRequirement ?studentID AI)
+    (satisfiedRequirement ?studentID Systems)
+    (satisfiedRequirement ?studentID Theory)
+    (satisfiedRequirement ?studentID SoftwareDevelopment)
+    (satisfiedRequirement ?studentID Project)
+    (satisfiedRequirement ?studentID TechnicalElective)
+    (evaluate ?num
+        (LengthOfListFn
+            (SetToListFn
+                (TheClosedRetrievalSetOf ?course
+                    (and
+                        (courseTaken ?studentID ?course)
+                        (countsTowards ?course ?AnyRandomRequirement)
+                    )
+                )
+            )
+        )
+    )
+    (greaterThanOrEqualTo ?num 19)
+)

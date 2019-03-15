@@ -432,15 +432,18 @@
 (isa EECS314 CourseID)
 (isa EECS392 CourseID)
 
-;;; --------------- COURSE PREDICATES ---------------
-
-(in-microtheory CourseMtFn)
+;;; --------------- COURSE INFO ---------------
 
 ;;; CourseID collection
 (isa CourseID Collection)
 (genls CourseID IDString)
 (comment CourseID "Represents the course listing and unique indentifier of a NUCourse-CS")
 
+(isa EECSNOREQ CourseID)
+(isa EECS211andEECS214 CourseID)
+(isa EECS212andEECS214 CourseID)
+(isa EECS213andEECS214 CourseID)
+(isa EECS212andEECS213andEECS214 CourseID)
 
 ;;;(courseIdentifier ?course ?id)
 (isa courseIdentifier Predicate)
@@ -449,7 +452,6 @@
 (arg2Isa courseIdentifier CourseID)
 (comment courseIdentifier "(courseIdentifier ?course ?id) establishes relationship between quarter-specific ?course and unique ?id")
 
-
 ;;; (coursePrereq ?course ?prereq)
 (isa coursePrereq Predicate)
 (arity coursePrereq 2)
@@ -457,15 +459,13 @@
 (arg2Isa coursePrereq CourseID)
 (comment coursePrereq "(coursePrereq ?course ?prereq) indicates that ?prereq is the prerequisite of a given Course-Collegiate ?course.")
 
-;;; --------------- PREREQS ---------------
-
-(in-microtheory CourseMtFn)
-
-(isa EECSNOREQ CourseID)
-(isa EECS211andEECS214 CourseID)
-(isa EECS212andEECS214 CourseID)
-(isa EECS213andEECS214 CourseID)
-(isa EECS212andEECS213andEECS214 CourseID)
+;;; (courseTaken ?StudentID ?CourseID)
+(isa courseTaken Predicate)
+(isa courseTaken CycLSentence-Assertible)
+(arity courseTaken 2)
+(arg1Isa courseTaken StudentID)
+(arg2Isa courseTaken CourseID)
+(comment courseTaken "Predicate to represent that a student has taken a specific course")
 
 (<== (courseTaken ?studentID EECS211andEECS214)
     (courseTaken ?studentID EECS211)
@@ -602,6 +602,7 @@
 (coursePrereq EECS396-SystemsProgramminginRust EECS211andEECS214)
 
 ;;; --------------- STUDENT INFO ---------------
+
 (in-microtheory PeopleForSocialModelingMt)
 
 (isa StudentID Collection)
@@ -614,7 +615,6 @@
 (arg1Isa studentIdentifier NUStudent)
 (arg2Isa studentIdentifier StudentID)
 (comment studentIdentifier "(studentIdentifier ?student ?id) establishes relationship between a student and its studentID")
-
 
 (in-microtheory CourseRecommenderMt)
 (genlmt CourseRecommenderMt CourseMtFn)
@@ -648,15 +648,12 @@
 (courseTaken xyz6666 EECS111)
 (courseTaken xyz6666 EECS211)
 
-;;; --------------- COURSE TAKING LOGIC ---------------
 
-;;; (courseTaken ?StudentID ?CourseID)
-(isa courseTaken Predicate)
-(isa courseTaken CycLSentence-Assertible)
-(arity courseTaken 2)
-(arg1Isa courseTaken StudentID)
-(arg2Isa courseTaken CourseID)
-(comment courseTaken "Predicate to represent that a student has taken a specific course")
+(in-microtheory CourseRecommenderMt)
+(genlmt CourseRecommenderMt CourseMtFn)
+(genlmt CourseRecommenderMt PeopleForSocialModelingMt)
+
+;; Based on prereqs, shows what courses a user can take
 
 ;;; (canTakeCourse ?StudentID ?CourseID)
 (isa canTakeCourse Predicate)
@@ -665,7 +662,6 @@
 (arg2Isa canTakeCourse CourseID)
 (comment canTakeCourse "Shows that a student represented via StudentID can take a specific CS Course")
 
-;; Works without duplicates!
 (<== (canTakeCourse ?StudentID ?CourseID)
      (courseIdentifier ?Course ?CourseID)
      (uninferredSentence (courseTaken ?StudentID ?CourseID))
@@ -684,13 +680,26 @@
      (coursePrereq ?CourseID EECSNOREQ)
 )
 
-;;; --------------- DEGREE REQUIREMENTS ---------------
+;;; (canTakeCourseByTopic ?StudentID ?CourseID ?Requirement)
+(isa canTakeCourseByTopic Predicate)
+(arity canTakeCourseByTopic 3)
+(arg1Isa canTakeCourseByTopic StudentID)
+(arg2Isa canTakeCourseByTopic CourseID)
+(arg3Isa canTakeCourseByTopic DegreeRequirement)
+(comment canTakeCourseByTopic "Shows that a student represented via StudentID can take a specific CS Course for a given topic")
 
-(in-microtheory CourseMtFn)
+(<== (canTakeCourseByTopic ?studentID ?courseID ?requirement)
+  (canTakeCourse ?studentID ?courseID)
+  (countsTowards ?courseID ?requirement)
+)
+
+;;; --------------- REQUIREMENTS --------------- 
+
+(in-microtheory CourseRecommenderMt)
 
 ;;; Degree Requirement Collection
-(is DegreeRequirement Collection)
-(genls DegreeRequirement FOOBAR)
+(isa DegreeRequirement Collection)
+(genls DegreeRequirement Requirement)
 (comment DegreeRequirement “CS Major degree requirement”)
 
 (isa Core DegreeRequirement)
@@ -837,3 +846,240 @@
 (countsTowards EECS396-SpecialTopicsinGameAI TechnicalElective)
 (countsTowards EECS396-DataScienceSeminar TechnicalElective)
 (countsTowards EECS396-ProgrammingLanguagesSeminar TechnicalElective)
+(countsTowards EECS396-AffectiveComputingSeminar TechnicalElective)
+(countsTowards EECS396-CompanionCognitiveSystemStudio TechnicalElective)
+(countsTowards EECS396-ConversationalInterfaces TechnicalElective)
+(countsTowards EECS396-DataScienceSeminar TechnicalElective)
+(countsTowards EECS396-ModalAnalytics TechnicalElective)
+(countsTowards EECS396-OperationalSemantics TechnicalElective)
+(countsTowards EECS396-QuadrotorDesign TechnicalElective)
+(countsTowards EECS396-RandomizedAlgorithms TechnicalElective)
+(countsTowards EECS396-SpecialTopicsinGameAI TechnicalElective)
+(countsTowards EECS396-SystemsProgramminginRust TechnicalElective)
+(countsTowards EECS396-TypeSystems TechnicalElective)
+(countsTowards EECS397-AdvancedMultimodalInterfacesandAnalyticsResearch TechnicalElective)
+(countsTowards EECS397-AdvancedTopicsinCompilers TechnicalElective)
+(countsTowards EECS397-AlgorithmsandSociety TechnicalElective)
+(countsTowards EECS397-ComputationalPhotographySeminar TechnicalElective)
+(countsTowards EECS397-ComputingandSocioeconomicMobility TechnicalElective)
+(countsTowards EECS397-DigitalForensics TechnicalElective)
+(countsTowards EECS397-DigitalLuthier TechnicalElective)
+(countsTowards EECS397-GameDevelopmentStudio TechnicalElective)
+(countsTowards EECS397-InclusiveMaking TechnicalElective)
+(countsTowards EECS397-InnovationinJournalismAndTechnology TechnicalElective)
+(countsTowards EECS397-InnovationLab TechnicalElective)
+(countsTowards EECS397-SocialComputing TechnicalElective)
+(countsTowards EECS397-SocialComputingandCrowdSourcing TechnicalElective)
+(countsTowards EECS397-SoftwareConstruction TechnicalElective)
+(countsTowards EECS397-WirelessandMobileHealth TechnicalElective)
+(countsTowards EECS496-ComputationalAuditorySceneAnalysis TechnicalElective)
+(countsTowards EECS496-DesignOfTools TechnicalElective)
+(countsTowards EECS496-DistributedSystems TechnicalElective)
+(countsTowards EECS496-GraduateAlgorithms TechnicalElective)
+(countsTowards EECS496-MechanismDesign TechnicalElective)
+(countsTowards EECS496-StasticalLanguageSeminar TechnicalElective)
+(countsTowards EECS496-TheoreticalMachineLearning TechnicalElective)
+(countsTowards EECS397-AdvancedMultimodalInterfacesandAnalyticsResearch Project)
+(countsTowards EECS397-AdvancedTopicsinCompilers Project)
+(countsTowards EECS397-AlgorithmsandSociety Project)
+(countsTowards EECS397-ComputationalPhotographySeminar Project)
+(countsTowards EECS397-ComputingandSocioeconomicMobility Project)
+(countsTowards EECS397-DigitalForensics Project)
+(countsTowards EECS397-DigitalLuthier Project)
+(countsTowards EECS397-GameDevelopmentStudio Project)
+(countsTowards EECS397-InclusiveMaking Project)
+(countsTowards EECS397-InnovationinJournalismAndTechnology Project)
+(countsTowards EECS397-InnovationinJournalismAndTechnology Project)
+(countsTowards EECS397-InnovationInJournalismAndTechnoloy Project)
+(countsTowards EECS397-InnovationLab Project)
+(countsTowards EECS397-InnovationLab Project)
+(countsTowards EECS397-SocialComputing Project)
+(countsTowards EECS397-SocialComputingandCrowdSourcing Project)
+(countsTowards EECS397-SoftwareConstruction Project)
+(countsTowards EECS397-WirelessandMobileHealth Project)
+
+;;; (satisfiedRequirement ?StudentID ?DegreeRequirement)
+(isa satisfiedRequirement Predicate)
+(arity satisfiedRequirement 2)
+(arg1Isa satisfiedRequirement StudentID)
+(arg2Isa satisfiedRequirement DegreeRequirement)
+(comment satisfiedRequirement "Tells whether a student has satisfied a specific degree requirement")
+
+(<== (satisfiedRequirement ?studentID Core)
+    (evaluate ?num
+        (LengthOfListFn
+            (SetToListFn
+                (TheClosedRetrievalSetOf ?course
+                    (and
+                        (courseTaken ?studentID ?course)
+                        (countsTowards ?course Core)
+                    )
+                )
+            )
+        )
+    )
+    (greaterThanOrEqualTo ?num 6)
+)
+
+(<== (satisfiedRequirement ?studentID AI)
+    (courseTaken ?studentID ?course)
+    (countsTowards ?course AI)
+)
+
+(<== (satisfiedRequirement ?studentID Systems)
+    (courseTaken ?studentID ?course)
+    (countsTowards ?course Systems)
+)
+
+(<== (satisfiedRequirement ?studentID Theory)
+    (courseTaken ?studentID ?course)
+    (countsTowards ?course Theory)
+)
+
+(<== (satisfiedRequirement ?studentID SoftwareDevelopment)
+    (courseTaken ?studentID ?course)
+    (countsTowards ?course SoftwareDevelopment)
+)
+
+(<== (satisfiedRequirement ?studentID Interfaces)
+    (courseTaken ?studentID ?course)
+    (countsTowards ?course Interfaces)
+)
+
+(<== (satisfiedRequirement ?studentID Project)
+    (evaluate ?num
+        (LengthOfListFn
+            (SetToListFn
+                (TheClosedRetrievalSetOf ?course
+                    (and
+                        (courseTaken ?studentID ?course)
+                        (countsTowards ?course Project)
+                    )
+                )
+            )
+        )
+    )
+    (greaterThanOrEqualTo ?num 2)
+)
+
+(<== (satisfiedRequirement ?studentID TechnicalElective)
+    (evaluate ?num
+        (LengthOfListFn
+            (SetToListFn
+                (TheClosedRetrievalSetOf ?course
+                    (and
+                        (courseTaken ?studentID ?course)
+                        (countsTowards ?course TechnicalElective)
+                    )
+                )
+            )
+        )
+    )
+    (greaterThanOrEqualTo ?num 6)
+)
+
+;;; (canGraduate ?StudentID)
+(isa canGraduate Predicate)
+(arity canGraduate 1)
+(arg1Isa canGraduate StudentID)
+(comment canGraduate "Tells whether a student can graduate with a CS major")
+
+(<== (canGraduate ?studentID)
+    (satisfiedRequirement ?studentID Core)
+    (satisfiedRequirement ?studentID AI)
+    (satisfiedRequirement ?studentID Systems)
+    (satisfiedRequirement ?studentID Theory)
+    (satisfiedRequirement ?studentID SoftwareDevelopment)
+    (satisfiedRequirement ?studentID Project)
+    (satisfiedRequirement ?studentID TechnicalElective)
+    (evaluate ?num
+        (LengthOfListFn
+            (SetToListFn
+                (TheClosedRetrievalSetOf ?course
+                    (and
+                        (courseTaken ?studentID ?course)
+                        (countsTowards ?course ?AnyRandomRequirement)
+                    )
+                )
+            )
+        )
+    )
+    (greaterThanOrEqualTo ?num 19)
+)
+
+;;; Query to show all missing degree requirements that still need to be fulfilled
+
+;; (missingRequirements ?studentID)
+(isa missingRequirements Predicate)
+(arity missingRequirements 2)
+(arg1Isa missingRequirements StudentID)
+(arg2Isa missingRequirements DegreeRequirement)
+(comment missingRequirements "Given a studentID, shows what degree requirements you have left to fulfil")
+
+(<== (missingRequirements ?studentID ?requirement)
+  (isa ?requirement DegreeRequirement)
+  (uninferredSentence (satisfiedRequirement ?studentID ?requirement))
+)
+
+;;; Query to create a sample schedule
+;;; 4 classes that do not coincide with time
+
+;; (sampleCourseSchedule ?studentID ?courseList)
+(isa sampleCourseSchedule Predicate)
+(arity sampleCourseSchedule 2)
+(arg1Isa sampleCourseSchedule StudentID)
+(arg2Isa sampleCourseSchedule TheList)
+(comment sampleCourseSchedule "returns 4 EECS courses that a student can take next quarter")
+
+
+(<== (sampleCourseSchedule ?studentID ?courseList)
+  (evaluate ?courseList1
+      (SetToListFn
+        (TheClosedRetrievalSetOf ?course (canTakeCourse ?studentID ?course)
+      )
+    )
+  )
+  (evaluate ?course1 (RandomMemberFn ?courseList1))
+  (evaluate ?course2 (RandomMemberFn ?courseList1))
+  (evaluate ?course3 (RandomMemberFn ?courseList1))
+  (evaluate ?course4 (RandomMemberFn ?courseList1))
+
+  (different ?course1 ?course2)
+  (different ?course1 ?course3)
+  (different ?course1 ?course4)
+  (different ?course2 ?course3)
+  (different ?course2 ?course4)
+  (different ?course3 ?course4)
+
+  (courseIdentifier ?course1-full ?course1)
+  (courseIdentifier ?course2-full ?course2)
+  (courseIdentifier ?course3-full ?course3)
+  (courseIdentifier ?course4-full ?course4)
+
+  (courseTerm ?course1-full
+    (SpringQuarterFn
+      (AcademicYearFn NorthwesternUniversity (YearFn 2018))))
+  (courseTerm ?course2-full
+    (SpringQuarterFn
+      (AcademicYearFn NorthwesternUniversity (YearFn 2018))))
+  (courseTerm ?course3-full
+    (SpringQuarterFn
+      (AcademicYearFn NorthwesternUniversity (YearFn 2018))))
+  (courseTerm ?course4-full
+    (SpringQuarterFn
+      (AcademicYearFn NorthwesternUniversity (YearFn 2018))))
+
+  (courseTimeString ?course1-full ?time1)
+  (courseTimeString ?course2-full ?time2)
+  (courseTimeString ?course3-full ?time3)
+  (courseTimeString ?course4-full ?time4)
+
+  (uninferredSentence (equals ?time1 ?time2))
+  (uninferredSentence (equals ?time1 ?time3))
+  (uninferredSentence (equals ?time1 ?time4))
+  (uninferredSentence (equals ?time2 ?time3))
+  (uninferredSentence (equals ?time2 ?time4))
+  (uninferredSentence (equals ?time3 ?time4))
+
+  (evaluate ?courseList (ListFn ?course1 ?course2 ?course3 ?course4))
+)

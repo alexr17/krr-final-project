@@ -1,10 +1,13 @@
 (in-microtheory CourseMtFn)
 
-(isa EECSNOREQ CourseID)
-(isa EECS211andEECS214 CourseID)
-(isa EECS212andEECS214 CourseID)
-(isa EECS213andEECS214 CourseID)
-(isa EECS212andEECS213andEECS214 CourseID)
+;;; (courseTaken ?StudentID ?CourseID)
+(isa courseTaken Predicate)
+(isa courseTaken CycLSentence-Assertible)
+(arity courseTaken 2)
+(arg1Isa courseTaken StudentID)
+(arg2Isa courseTaken CourseID)
+(comment courseTaken "Predicate to represent that a student has taken a specific course")
+
 
 (<== (courseTaken ?studentID EECS211andEECS214)
     (courseTaken ?studentID EECS211)

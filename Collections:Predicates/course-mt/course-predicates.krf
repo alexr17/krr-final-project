@@ -5,6 +5,11 @@
 (genls CourseID IDString)
 (comment CourseID "Represents the course listing and unique indentifier of a NUCourse-CS")
 
+(isa EECSNOREQ CourseID)
+(isa EECS211andEECS214 CourseID)
+(isa EECS212andEECS214 CourseID)
+(isa EECS213andEECS214 CourseID)
+(isa EECS212andEECS213andEECS214 CourseID)
 
 ;;;(courseIdentifier ?course ?id)
 (isa courseIdentifier Predicate)
@@ -12,7 +17,6 @@
 (arg1Isa courseIdentifier NUCourse-CS)
 (arg2Isa courseIdentifier CourseID)
 (comment courseIdentifier "(courseIdentifier ?course ?id) establishes relationship between quarter-specific ?course and unique ?id")
-
 
 ;;; (coursePrereq ?course ?prereq)
 (isa coursePrereq Predicate)
