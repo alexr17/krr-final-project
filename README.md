@@ -30,6 +30,14 @@ We wanted to create a KRR-powered course advising system for CS students. This c
 6. Save the updated 'user-info.krf' and load this flatfile into Companions
 7. Enter interaction manager by right clicking on it and choosing "Browse KB".
 8. Navigate to Query tab
-9. Type the query (canTakeCourse ENTER_NETID ?courses), substituting out ENTER_NETID with your unique net id.
+9. Choose one of the following queries, substituting out ENTER_NETID with your unique NetID.
+	* (canTakeCourse ENTER_NETID ?courses)
+		* Description: Provides a list of available courses for next quarter based on prereqs
+	* (canTakeCourseByTopic ENTER_NETID ?CourseID ?Topic)
+		* Description: Similar functionality to above query but lets user filter out by course topic
+	* (missingRequirements ENTER_NETID)
+		* Description: Lists the degree requirements the student needs to fulfill
+	* (sampleCourseSchedule ENTER_NETID ?courseList)
+		* Description: Generates a sample course schedule for next quarter considering course timestring
 10. Press the button titled 'Query using fire:query'
-11. Your results will show up, look through the course names to decide which courses would be best for your 2019 Spring Quarter.
+11. Your results will appear in the query response window
