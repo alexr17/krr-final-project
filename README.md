@@ -49,6 +49,7 @@ We wanted to create a KRR-powered course advising system for CS students. This c
 		* Description: Provides a list of available courses for next quarter based on prereqs
 	* (canTakeCourseByTopic ENTER_NETID ?CourseID ?Topic)
 		* Description: Similar functionality to above query but lets user filter out by course topic
+		* Topics include AI, Systems, Theory, Interfaces, SoftwareDevelopment, Project, TechnicalElective
 	* (missingRequirements ENTER_NETID)
 		* Description: Lists the degree requirements the student needs to fulfill
 	* (satisfiedRequirement ENTER_NETID ?requirement)
