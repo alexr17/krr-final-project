@@ -1,3 +1,5 @@
+;;; ENTER YOUR INFORMATION HERE
+
 (isa ENTER_NETID StudentID)
 (isa ENTER_STUDENT_NAME NUStudent)
 (studentIdentifier ENTER_STUDENT_NAME ENTER_NETID)
@@ -6,10 +8,7 @@
 (courseTaken ENTER_NETID EECSXXX)
 
 ;;; Add additional (courseTaken ENTER_NETID EECSXXX) triples as needed to include all CS classes you have taken
-
 ;;; For courses with dashes in their course ID's match the following representation: EECS351-1
-
-
 
 ;;; EECS395-AdvancedLowPowerDigitalandMixed-signalIntegratedCircuitDesign
 ;;; EECS395-AdvancedTopicsinComputerArchitecture

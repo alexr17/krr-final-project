@@ -1,9 +1,5 @@
 (in-microtheory CourseRecommenderMt)
 
-
-
-
-
 ;; (missingRequirements ?studentID)
 (isa missingRequirements Predicate)
 (arity missingRequirements 2)
