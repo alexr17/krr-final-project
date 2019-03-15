@@ -49,6 +49,6 @@ We wanted to create a KRR-powered course advising system for CS students. This c
 	* (satisfiedRequirement ENTER_NETID ?requirement)
 		* Description: Returns all degree requirements satisfied by student
 	* (sampleCourseSchedule ENTER_NETID ?courseList)
-		* Description: Generates a sample course schedule for next quarter considering course timestring
+		* Description: Generates a sample course schedule for next quarter, taking into account the times for each course to prevent time clashes.
 10. Press the button titled 'Query using fire:query'
 11. Your results will appear in the query response window

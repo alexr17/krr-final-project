@@ -10,6 +10,9 @@
 (arg2Isa courseTaken CourseID)
 (comment courseTaken "Predicate to represent that a student has taken a specific course")
 
+
+;; Based on prereqs, shows what courses a user can take
+
 ;;; (canTakeCourse ?StudentID ?CourseID)
 (isa canTakeCourse Predicate)
 (arity canTakeCourse 2)
@@ -17,7 +20,6 @@
 (arg2Isa canTakeCourse CourseID)
 (comment canTakeCourse "Shows that a student represented via StudentID can take a specific CS Course")
 
-;; Works without duplicates!
 (<== (canTakeCourse ?StudentID ?CourseID)
      (courseIdentifier ?Course ?CourseID)
      (uninferredSentence (courseTaken ?StudentID ?CourseID))
@@ -35,3 +37,101 @@
          (AcademicYearFn NorthwesternUniversity (YearFn 2018))))
      (coursePrereq ?CourseID EECSNOREQ)
 )
+
+;;; Shows courses a user can take based on a requirement
+
+;;; (canTakeCourseByTopic ?StudentID ?CourseID ?Requirement)
+(isa canTakeCourseByTopic Predicate)
+(arity canTakeCourseByTopic 3)
+(arg1Isa canTakeCourseByTopic StudentID)
+(arg2Isa canTakeCourseByTopic CourseID)
+(arg3Isa canTakeCourseByTopic DegreeRequirement)
+(comment canTakeCourseByTopic "Shows that a student represented via StudentID can take a specific CS Course for a given topic")
+
+(<== (canTakeCourseByTopic ?studentID ?courseID ?requirement)
+  (canTakeCourse ?studentID ?courseID)
+  (countsTowards ?courseID ?requirement)
+)
+
+
+;;; Query to show all missing degree requirements that still need to be fulfilled
+
+;; (missingRequirements ?studentID)
+(isa missingRequirements Predicate)
+(arity missingRequirements 2)
+(arg1Isa missingRequirements StudentID)
+(arg2Isa missingRequirements DegreeRequirement)
+(comment missingRequirements "Given a studentID, shows what degree requirements you have left to fulfil")
+
+(<== (missingRequirements ?studentID ?requirement)
+  (isa ?requirement DegreeRequirement)
+  (uninferredSentence (satisfiedRequirement ?studentID ?requirement))
+)
+
+;;; Query to create a sample schedule
+;;; 4 classes that do not coincide with time
+
+;; (sampleCourseSchedule ?studentID ?courseList)
+(isa sampleCourseSchedule Predicate)
+(arity sampleCourseSchedule 2)
+(arg1Isa sampleCourseSchedule StudentID)
+(arg2Isa sampleCourseSchedule TheList)
+(comment sampleCourseSchedule "returns 4 EECS courses that a student can take next quarter")
+
+
+(<== (sampleCourseSchedule ?studentID ?courseList)
+  (evaluate ?courseList1
+      (SetToListFn
+        (TheClosedRetrievalSetOf ?course (canTakeCourse ?studentID ?course)
+      )
+    )
+  )
+  (evaluate ?course1 (RandomMemberFn ?courseList1))
+  (evaluate ?course2 (RandomMemberFn ?courseList1))
+  (evaluate ?course3 (RandomMemberFn ?courseList1))
+  (evaluate ?course4 (RandomMemberFn ?courseList1))
+
+
+  (different ?course1 ?course2)
+  (different ?course1 ?course3)
+  (different ?course1 ?course4)
+  (different ?course2 ?course3)
+  (different ?course2 ?course4)
+  (different ?course3 ?course4)
+
+  (courseIdentifier ?course1-full ?course1)
+  (courseIdentifier ?course2-full ?course2)
+  (courseIdentifier ?course3-full ?course3)
+  (courseIdentifier ?course4-full ?course4)
+
+  (courseTerm ?course1-full
+    (SpringQuarterFn
+      (AcademicYearFn NorthwesternUniversity (YearFn 2018))))
+  (courseTerm ?course2-full
+    (SpringQuarterFn
+      (AcademicYearFn NorthwesternUniversity (YearFn 2018))))
+  (courseTerm ?course3-full
+    (SpringQuarterFn
+      (AcademicYearFn NorthwesternUniversity (YearFn 2018))))
+  (courseTerm ?course4-full
+    (SpringQuarterFn
+      (AcademicYearFn NorthwesternUniversity (YearFn 2018))))
+
+  (courseTimeString ?course1-full ?time1)
+  (courseTimeString ?course2-full ?time2)
+  (courseTimeString ?course3-full ?time3)
+  (courseTimeString ?course4-full ?time4)
+
+  (uninferredSentence (equals ?time1 ?time2))
+  (uninferredSentence (equals ?time1 ?time3))
+  (uninferredSentence (equals ?time1 ?time4))
+  (uninferredSentence (equals ?time2 ?time3))
+  (uninferredSentence (equals ?time2 ?time4))
+  (uninferredSentence (equals ?time3 ?time4))
+
+  (evaluate ?courseList (ListFn ?course1 ?course2 ?course3 ?course4))
+
+
+)
+
+
