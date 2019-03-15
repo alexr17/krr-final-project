@@ -15,12 +15,14 @@ We wanted to create a KRR-powered course advising system for CS students. This c
 	* CourseID -- Collection
 	* courseIdentifier -- Predicate
 	* coursePrereq -- Predicate
+		* Courses with multiple prereqs are also accounted for
 	* DegreeRequirement -- Collection
 	* satisfiedRequirement -- Predicate
 * Universal course identifiers to abstract from the quarter-specific information that already exists in the knowledgebase
 * Create intricate relationships amongst the courses, as follows:
   * The degree requirements each of the courses fulfil in regards to the Computer Science major.
   * The prerequisites required by each of the courses in order to actually enroll in them.
+  
 
 
 # How to use
@@ -28,6 +30,7 @@ We wanted to create a KRR-powered course advising system for CS students. This c
 2. Enter a username and start a Companions session.
 3. Right click on "interaction manager" and load list of specific flat files shown below.
 4. Under the Collections:Predicate folder, load the "all-flats.krf" file into Companions.
+**NOTE** You can use the student ID anr3485 for queries, as information about that student has already been put in the KB.
 5. Open 'main.krf' in a text editor. This will act as a template
   1. Replace ENTER_NETID with your unique net id
   2. Replace ENTER_STUDENT_NAME with your full name
