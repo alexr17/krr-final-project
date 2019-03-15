@@ -28,15 +28,15 @@ We wanted to create a KRR-powered course advising system for CS students. This c
 2. Enter a username and start a Companions session.
 3. Right click on "interaction manager" and load list of specific flat files shown below.
 4. Under the Collections:Predicate folder, load the "all-flats.krf" file into Companions.
-5. Open 'user-info.krf' in a text editor. This will act as a template
+5. Open 'main.krf' in a text editor. This will act as a template
   1. Replace ENTER_NETID with your unique net id
   2. Replace ENTER_STUDENT_NAME with your full name
   3. For each course you have taken, complete the courseTaken predicate.
     * The first argument is your net id
     * The second argument is an EECS class you've take in the form EECSXXX, where XXX is the course number.
       * If there's a dash in the course name, add it as EECSXXX-X.
-      * For all EECS 39X and EECS 49X courses, find the appropriate name from the list stored in 'user-info.krf'. Use this as the first argument, rather than just EECS39X/EECS49X.
-6. Save the updated 'user-info.krf' and load this flatfile into Companions
+      * For all EECS 39X and EECS 49X courses, find the appropriate name from the list stored in 'main.krf'. Use this as the first argument, rather than just EECS39X/EECS49X.
+6. Save the updated 'main.krf' and load this flatfile into Companions
 7. Enter interaction manager by right clicking on it and choosing "Browse KB".
 8. Navigate to Query tab
 9. Choose one of the following queries, substituting out ENTER_NETID with your unique NetID.
