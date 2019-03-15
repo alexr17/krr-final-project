@@ -56,6 +56,7 @@ We wanted to create a KRR-powered course advising system for CS students. This c
 		* Description: Returns all degree requirements satisfied by student
 	* (sampleCourseSchedule ENTER_NETID ?courseList)
 		* Description: Generates a sample course schedule for next quarter, taking into account the times for each course to prevent time clashes.
+		* This generates a different sample schedule everytime, so for different options keep re-running the query.
 	* (canGraduate ENTER_NETID)
 		* Description: Takes into account degree requirements to check whether the user can graduate or not.  
 10. Press the button titled 'Query using fire:query'
