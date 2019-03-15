@@ -1,9 +1,11 @@
+(in-microtheory CourseRecommenderMt)
+
 (<== (satisfiedRequirement ?studentID Core)
     (evaluate ?num
         (LengthOfListFn
             (SetToListFn
                 (TheClosedRetrievalSetOf ?course
-                    (and 
+                    (and
                         (courseTaken ?studentID ?course)
                         (countsTowards ?course Core)
                     )
@@ -44,7 +46,7 @@
         (LengthOfListFn
             (SetToListFn
                 (TheClosedRetrievalSetOf ?course
-                    (and 
+                    (and
                         (courseTaken ?studentID ?course)
                         (countsTowards ?course Project)
                     )
@@ -60,7 +62,7 @@
         (LengthOfListFn
             (SetToListFn
                 (TheClosedRetrievalSetOf ?course
-                    (and 
+                    (and
                         (courseTaken ?studentID ?course)
                         (countsTowards ?course TechnicalElective)
                     )
@@ -84,7 +86,7 @@
         (LengthOfListFn
             (SetToListFn
                 (TheClosedRetrievalSetOf ?course
-                    (and 
+                    (and
                         (courseTaken ?studentID ?course)
                         (countsTowards ?course ?AnyRandomRequirement)
                     )

@@ -1,7 +1,23 @@
 (in-microtheory CourseRecommenderMt)
+
+
+
+
+
+;; (missingRequirements ?studentID)
+(isa missingRequirements Predicate)
+(arity missingRequirements 2)
+(arg1Isa missingRequirements StudentID)
+(arg2Isa missingRequirements DegreeRequirement)
+(comment missingRequirements "Given a studentID, shows what degree requirements you have left to fulfil")
+
+(<== (missingRequirements ?studentID ?requirement)
+  (isa ?requirement DegreeRequirement)
+  (uninferredSentence (satisfiedRequirement ?studentID ?requirement))
+)
+
 ;;; Query to create a sample schedule
 ;;; 4 classes that do not coincide with time
-
 
 ;; (sampleCourseSchedule ?studentID ?courseList)
 (isa sampleCourseSchedule Predicate)
